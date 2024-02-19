@@ -3,7 +3,7 @@ package Converter;
 import java.util.HashMap;
 import java.util.Map;
 public class MorseConverter {
-    // Datastruktur Hashmap för att mappa för översättning mellan engelska bokstäver och morsekod
+    // mappning för översättning mellan engelska bokstäver och morsekod
     private static final Map<Character, String> letterToMorse = new HashMap<>();
     private static final Map<String, Character> morseToLetter = new HashMap<>();
 
@@ -15,13 +15,14 @@ public class MorseConverter {
         morseToLetter.put("*--", 'W');
     }
 
-    // Översätter engelsk text till morsekod
-    public static String toMorse(String text) {
-        if (containsMultipleSpaces(text)) {
+    // För översättning av engelsk bokstav till morsekod
+    public static String toMorse(String letter) {
+        if (containsMultipleSpaces(letter)) {
             throw new IllegalArgumentException("Try again! Your text contains multiple spaces.");
         }
+
         StringBuilder morseCode = new StringBuilder();
-        for (char letterCharacter : text.toUpperCase().toCharArray()) {
+        for (char letterCharacter : letter.toUpperCase().toCharArray()) {
             String morse = letterToMorse.get(letterCharacter);
             if (morse == null) {
                 throw new IllegalArgumentException("You've entered the wrong character: " + letterCharacter);
@@ -30,11 +31,13 @@ public class MorseConverter {
         }
         return morseCode.toString().trim();
     }
-    // Översätter morsekod till engelsk text
+
+    //För översättning av morsekod till engelsk bokstav
     public static String fromMorse(String code) {
         if (containsMultipleSpaces(code)) {
             throw new IllegalArgumentException("Try again! Your morse code contains multiple spaces.");
         }
+
         StringBuilder englishText = new StringBuilder();
         for (String morseCharacter : code.trim().split(" ")) {
             Character letterChar = morseToLetter.get(morseCharacter);
@@ -45,7 +48,8 @@ public class MorseConverter {
         }
         return englishText.toString();
     }
-    // Extra metod för fler än två mellanslag i följd
+
+    //mellanslagskontroll för flera mellanslag
     private static boolean containsMultipleSpaces(String str) {
         return str.contains("  ");
     }

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class MorseConverterTests {
 
-    // Testar översättning från engelska bokstäver till morsekod
+    // Testa översättning från engelska bokstäver till morsekod
     @Test
     public void testingLettersToMorse() {
         String testdata = "WE";
@@ -13,7 +13,7 @@ public class MorseConverterTests {
         String actual = MorseConverter.toMorse(testdata);
         Assertions.assertEquals(expected, actual);
     }
-    // Testar översättning från morsekod till engelska bokstäver
+    // Testa översättning från morsekod till engelska bokstäver
     @Test
     public void testingMorseToLetters() {
         String testdata = "*-- *";
@@ -21,13 +21,13 @@ public class MorseConverterTests {
         String actual = MorseConverter.fromMorse(testdata);
         Assertions.assertEquals(expected, actual);
     }
-    // Testar hantering av ogiltiga tecken
+    // Testa hantering av ogiltiga tecken
     @Test
     public void testingWithInvalidCharacters() {
         String testdata = "% # ¤";
         Assertions.assertThrows(IllegalArgumentException.class, () -> MorseConverter.toMorse(testdata));
     }
-    // Testar hantering av extra mellanslag i input
+    // Testa hantering av extra mellanslag i input
     @Test
     public void testingWithMultiSpace() {
         String testdata = "  ";
